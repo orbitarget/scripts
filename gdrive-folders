@@ -1,0 +1,25 @@
+function crearCarpetasEnBlueprint() {
+  // Nombre de la carpeta base
+  var nombreCarpetaBase = 'Blueprint';
+
+  // Especifica los nombres de las subcarpetas que deseas crear dentro de la carpeta Blueprint
+  var nombresSubcarpetas = ['Carpeta 1', 'Carpeta 2', 'Carpeta 3']; // Añade más nombres de carpetas si es necesario
+
+  // Busca la carpeta "Blueprint" en tu Drive
+  var carpetaBase;
+  var carpetasBase = DriveApp.getFoldersByName(nombreCarpetaBase);
+  
+  // Si la carpeta "Blueprint" no existe, la crea
+  if (carpetasBase.hasNext()) {
+    carpetaBase = carpetasBase.next();
+  } else {
+    carpetaBase = DriveApp.createFolder(nombreCarpetaBase);
+    Logger.log('Carpeta base "Blueprint" creada.');
+  }
+
+  // Crea las subcarpetas dentro de la carpeta "Blueprint"
+  nombresSubcarpetas.forEach(function(nombre) {
+    var subcarpeta = carpetaBase.createFolder(nombre);
+    Logger.log('Subcarpeta creada: ' + nombre);
+  });
+}
